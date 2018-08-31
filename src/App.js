@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import purple from '@material-ui/core/colors/purple';
-import Images from './Images'
+import Images from './images.js'
 import './App.css';
 
 let random =Math.floor((Math.random() * 160) + 50)
