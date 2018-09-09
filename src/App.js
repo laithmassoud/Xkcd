@@ -3,9 +3,11 @@ import logo from './logo.svg';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import purple from '@material-ui/core/colors/purple';
 import Images from './images.js'
+import axios from 'axios';
 import './App.css';
 
-let random =Math.floor((Math.random() * 160) + 50)
+let random =Math.floor(Math.random() * 10) + 1  
+
 let url = `http://xkcd.com/${random}/info.0.json`
 
 class App extends Component {
@@ -15,20 +17,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch(url,  {
-      mode: 'no-cors', // 'cors' by default
-      method: 'GET',
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Content-Type': 'application/json'
-      },
-    }).then(res => res.json() )
-    .then(response => console.log('Success:', JSON.stringify(response)))
-    .then(result => this.setState({ items: result.items, isLoading: false }))
+   axios.get(url)
+  .then(result => this.setState({ items: result.data, isLoading: false },console.log(result.data.img,'here')))
   }
 
 
- 
+
 
 
   render() {
@@ -41,7 +35,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">Welcome to xkcd</h1>
         </header>
         <Images items={this.state.items}/>
       </div>
